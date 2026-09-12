@@ -1,0 +1,232 @@
+/* =========================
+   KING'S LAUNDERING
+   JAVASCRIPT
+========================= */
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const navbar = document.getElementById("navbar");
+
+menuBtn.addEventListener("click", () => {
+
+    navbar.classList.toggle("active");
+
+});
+
+
+/* Close mobile menu when link is clicked */
+
+document.querySelectorAll(".navbar a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navbar.classList.remove("active");
+
+    });
+
+});
+
+
+/* =========================
+   FAQ ACCORDION
+========================= */
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+
+    const question = item.querySelector(".faq-question");
+
+    question.addEventListener("click", () => {
+
+        const isActive = item.classList.contains("active");
+
+        faqItems.forEach(otherItem => {
+            otherItem.classList.remove("active");
+
+            const icon = otherItem.querySelector(".faq-question span");
+
+            if (icon) {
+                icon.textContent = "+";
+            }
+        });
+
+        if (!isActive) {
+
+            item.classList.add("active");
+
+            const icon = item.querySelector(".faq-question span");
+
+            if (icon) {
+                icon.textContent = "−";
+            }
+
+        }
+
+    });
+
+});
+
+
+/* =========================
+   BOOKING FORM
+========================= */
+
+const bookingForm = document.getElementById("bookingForm");
+
+bookingForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const service =
+        document.getElementById("service").value;
+
+    const quantity =
+        document.getElementById("quantity").value.trim();
+
+    const address =
+        document.getElementById("address").value.trim();
+
+    const date =
+        document.getElementById("date").value;
+
+    const time =
+        document.getElementById("time").value;
+
+    const message =
+        document.getElementById("message").value.trim();
+
+
+    const whatsappNumber = "2348012345678";
+
+
+    let whatsappMessage =
+        "Hello King's Laundering!%0A%0A" +
+
+        "I would like to book a laundry service.%0A%0A" +
+
+        "*Customer Details*%0A" +
+        "Name: " + encodeURIComponent(name) + "%0A" +
+        "Phone: " + encodeURIComponent(phone) + "%0A%0A" +
+
+        "*Laundry Details*%0A" +
+        "Service: " + encodeURIComponent(service) + "%0A" +
+        "Quantity: " + encodeURIComponent(quantity) + "%0A%0A" +
+
+        "*Pickup Details*%0A" +
+        "Address: " + encodeURIComponent(address) + "%0A" +
+        "Date: " + encodeURIComponent(date) + "%0A" +
+        "Time: " + encodeURIComponent(time) + "%0A";
+
+
+    if (message !== "") {
+
+        whatsappMessage +=
+            "%0A*Additional Information*%0A" +
+            encodeURIComponent(message);
+
+    }
+
+
+    const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        whatsappMessage;
+
+
+    window.open(whatsappURL, "_blank");
+
+});
+
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+const backTop = document.getElementById("backTop");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 500) {
+
+        backTop.classList.add("show");
+
+    } else {
+
+        backTop.classList.remove("show");
+
+    }
+
+});
+
+
+backTop.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+
+/* =========================
+   CURRENT YEAR
+========================= */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* =========================
+   MINIMUM DATE FOR BOOKING
+========================= */
+
+const dateInput = document.getElementById("date");
+
+const today = new Date();
+
+const year = today.getFullYear();
+
+const month =
+    String(today.getMonth() + 1).padStart(2, "0");
+
+const day =
+    String(today.getDate()).padStart(2, "0");
+
+dateInput.min = `${year}-${month}-${day}`;
+
+
+/* =========================
+   HEADER SHADOW
+========================= */
+
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 20) {
+
+        header.style.boxShadow =
+            "0 5px 25px rgba(0,0,0,0.09)";
+
+    } else {
+
+        header.style.boxShadow =
+            "0 3px 20px rgba(0,0,0,0.05)";
+
+    }
+
+});
